@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var \Elogic\EligibleForReturn\Block\EligibleForReturn $block
+ */
+
+$text = $block->getText();
+if (!empty($text)): ?>
+    <div class="eligible-for-return">
+        <?= $block->escapeHtml($text) ?>
+    </div>
+<?php endif; ?>

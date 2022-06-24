@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="alert.urls">
+            <block
+                ifconfig="elogic/general/show"
+                name="product.info.eligible_for_return"
+                class="Elogic\EligibleForReturn\Block\EligibleForReturn"
+                template="Elogic_EligibleForReturn::eligible_for_return.phtml"
+                before="-"/>
+        </referenceContainer>
+    </body>
+</page>

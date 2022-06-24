@@ -1,0 +1,11 @@
+interface ProductInterface {
+    eligible_for_return: String
+    eligible_for_return_text: String
+        @doc(description: "Return full text if value set or empty if not")
+        @resolver(class: "Elogic\\EligibleForReturn\\Model\\Resolver\\EligibleForReturnResolver")
+}
+
+type StoreConfig {
+    elogic_general_show: Boolean @doc(description: "To check showing text is enable or disable") ,
+    elogic_general_tpl: String @doc(description: "Getting text template")
+}

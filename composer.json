@@ -1,0 +1,28 @@
+{
+    "name": "elogic/module-eligible-for-return",
+    "version": "1.0.0",
+    "description": "N/A",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Alex Rapatij",
+            "email": "pc.rapatij@gmail.com",
+            "homepage": "https://elogic.co/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "magento/framework": "*"
+    },
+    "license": [
+        "Proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Elogic\\EligibleForReturn\\": ""
+        }
+    }
+}
