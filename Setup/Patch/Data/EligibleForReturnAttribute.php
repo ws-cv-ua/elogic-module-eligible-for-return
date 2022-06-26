@@ -7,11 +7,17 @@ namespace Elogic\EligibleForReturn\Setup\Patch\Data;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Psr\Log\LoggerInterface;
 
 class EligibleForReturnAttribute implements DataPatchInterface
 {
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    private ModuleDataSetupInterface $moduleDataSetup;
+
     /**
      * @var EavSetupFactory
      */
@@ -28,9 +34,11 @@ class EligibleForReturnAttribute implements DataPatchInterface
      * @param LoggerInterface $logger
      */
     public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
         EavSetupFactory $eavSetupFactory,
         LoggerInterface $logger
     ) {
+        $this->moduleDataSetup = $moduleDataSetup;
         $this->eavSetupFactory = $eavSetupFactory;
         $this->logger = $logger;
     }
@@ -47,6 +55,8 @@ class EligibleForReturnAttribute implements DataPatchInterface
 
     public function apply()
     {
+        $this->moduleDataSetup->getConnection()->startSetup();
+
         $eavSetup = $this->eavSetupFactory->create();
         try {
             $eavSetup->addAttribute(
@@ -69,5 +79,7 @@ class EligibleForReturnAttribute implements DataPatchInterface
         } catch (LocalizedException|\Zend_Validate_Exception $e) {
             $this->logger->critical("Can't create eligible_for_return attribute");
         }
+
+        $this->moduleDataSetup->getConnection()->endSetup();
     }
 }
